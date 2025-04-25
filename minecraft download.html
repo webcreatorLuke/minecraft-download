@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minecraft Downloader</title>
+  <style>
+    #downloadWizard {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid black;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    #downloadBtn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #downloadBtn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<button id="openDownloadWizard">Click to Download Minecraft</button>
+
+<div id="overlay"></div>
+<div id="downloadWizard">
+  <h2>Download Minecraft</h2>
+  <p>Click the button below to download Minecraft:</p>
+  <button id="downloadBtn" onclick="downloadMinecraft()">Download Minecraft</button><br><br>
+  <button onclick="closeWizard()">Close</button>
+</div>
+
+<script>
+  // Open the download wizard when the button is clicked
+  document.getElementById("openDownloadWizard").addEventListener("click", function() {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("downloadWizard").style.display = "block";
+  });
+
+  // Function to handle the download based on user input
+  function downloadMinecraft() {
+    const platform = prompt("Please enter your platform: 'Windows' or 'Mac'").toLowerCase();
+    if (platform === 'windows') {
+      window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.msi";
+    } else if (platform === 'mac') {
+      window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
+    } else {
+      alert("Invalid platform. Please enter either 'Windows' or 'Mac'.");
+    }
+  }
+
+  // Function to close the wizard
+  function closeWizard() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("downloadWizard").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
