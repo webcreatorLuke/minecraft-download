@@ -100,26 +100,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Geometry Dash Download</title>
+  <title>Download Geometry Dash</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background-color: #f9f9f9;
       text-align: center;
       padding-top: 100px;
     }
 
-    #downloadBtn {
+    h1 {
+      font-size: 32px;
+    }
+
+    button {
       font-size: 20px;
       padding: 15px 30px;
       background-color: #4CAF50;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
+      margin-top: 20px;
     }
 
-    #downloadBtn:hover {
+    button:hover {
       background-color: #45a049;
     }
   </style>
@@ -127,27 +132,24 @@
 <body>
 
 <h1>Download Geometry Dash</h1>
-<p>Click the button below to get Geometry Dash for your device:</p>
+<p>Click the button below to get the game for your system:</p>
 
-<!-- 👇 THIS is the button you're looking for -->
-<button id="downloadBtn">Download Geometry Dash</button>
+<button onclick="downloadGame()">Download Geometry Dash</button>
 
 <script>
-  const btn = document.getElementById("downloadBtn");
-
-  btn.addEventListener("click", () => {
+  function downloadGame() {
     const ua = navigator.userAgent.toLowerCase();
 
-    if (/android/.test(ua)) {
-      window.location.href = "https://play.google.com/store/apps/details?id=com.robtopx.geometryjump";
-    } else if (/iphone|ipad|ipod/.test(ua)) {
-      window.location.href = "https://apps.apple.com/app/geometry-dash/id625334537";
-    } else if (/win|mac/.test(ua)) {
-      window.location.href = "https://store.steampowered.com/app/322170/Geometry_Dash/";
+    if (ua.includes("win")) {
+      // Replace with your hosted .exe file
+      window.location.href = "https://yourwebsite.com/files/geometrydash-win.exe";
+    } else if (ua.includes("mac") || ua.includes("darwin")) {
+      // Replace with your hosted .dmg file
+      window.location.href = "https://yourwebsite.com/files/geometrydash-mac.dmg";
     } else {
-      alert("Sorry, your device might not be supported.");
+      alert("Sorry, this download is only for Windows and Mac.");
     }
-  });
+  }
 </script>
 
 </body>
