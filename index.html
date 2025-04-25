@@ -2,53 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Minecraft Download</title>
+  <title>Download Minecraft</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background-color: #eef2f3;
       text-align: center;
       padding-top: 100px;
     }
 
-    #downloadBtn {
-      font-size: 20px;
-      padding: 15px 30px;
-      background-color: #2e8b57;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+    h1 {
+      font-size: 32px;
     }
 
-    #downloadBtn:hover {
-      background-color: #276c47;
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      background-color: #ff9900;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e58900;
     }
   </style>
 </head>
 <body>
 
 <h1>Download Minecraft</h1>
-<p>Click the button below to download Minecraft for your device:</p>
+<p>Click the button below to download the setup wizard for your system:</p>
 
-<button id="downloadBtn">Download Minecraft</button>
+<button onclick="downloadMinecraft()">Download Minecraft</button>
 
 <script>
-  const btn = document.getElementById("downloadBtn");
+  function downloadMinecraft() {
+    const userAgent = navigator.userAgent.toLowerCase();
 
-  btn.addEventListener("click", () => {
-    const ua = navigator.userAgent.toLowerCase();
-
-    if (/android/.test(ua)) {
-      window.location.href = "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe";
-    } else if (/iphone|ipad|ipod/.test(ua)) {
-      window.location.href = "https://apps.apple.com/us/app/minecraft/id479516143";
-    } else if (/win|mac/.test(ua)) {
-      window.location.href = "https://www.minecraft.net/en-us/download";
+    if (userAgent.includes("win")) {
+      // Direct download for Windows installer (replace this with your hosted .exe if needed)
+      window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.exe";
+    } else if (userAgent.includes("mac")) {
+      // Direct download for Mac installer (replace this with your hosted .dmg if needed)
+      window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
     } else {
-      alert("Sorry, your device might not be supported.");
+      alert("Sorry, this download is only for Windows and Mac.");
     }
-  });
+  }
 </script>
 
 </body>
