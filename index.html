@@ -44,31 +44,35 @@
 <div id="overlay"></div>
 <div id="downloadWizard">
   <h2>Download Minecraft</h2>
-  <p>Click the button below to download Minecraft:</p>
+  <p>Click the button below to download Minecraft for your device:</p>
   <button id="downloadBtn" onclick="downloadMinecraft()">Download Minecraft</button><br><br>
   <button onclick="closeWizard()">Close</button>
 </div>
 
 <script>
-  // Open the download wizard when the button is clicked
   document.getElementById("openDownloadWizard").addEventListener("click", function() {
     document.getElementById("overlay").style.display = "block";
     document.getElementById("downloadWizard").style.display = "block";
   });
 
-  // Function to handle the download based on user input
   function downloadMinecraft() {
-    const platform = prompt("Please enter your platform: 'Windows' or 'Mac'").toLowerCase();
-    if (platform === 'windows') {
-      window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.msi";
-    } else if (platform === 'mac') {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/windows phone/i.test(userAgent)) {
+      alert("Minecraft is not available on Windows Phone.");
+    } else if (/android/i.test(userAgent)) {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe";
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.location.href = "https://apps.apple.com/app/minecraft/id479516143";
+    } else if (/Mac/i.test(userAgent)) {
       window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
+    } else if (/Win/i.test(userAgent)) {
+      window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.msi";
     } else {
-      alert("Invalid platform. Please enter either 'Windows' or 'Mac'.");
+      alert("Sorry, your device is not supported.");
     }
   }
 
-  // Function to close the wizard
   function closeWizard() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("downloadWizard").style.display = "none";
