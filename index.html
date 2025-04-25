@@ -6,53 +6,53 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #eef2f3;
+      background-color: #f3f3f3;
       text-align: center;
       padding-top: 100px;
     }
 
     h1 {
       font-size: 32px;
+      margin-bottom: 20px;
     }
 
     button {
-      font-size: 20px;
       padding: 15px 30px;
-      background-color: #ff9900;
+      font-size: 20px;
+      background-color: #28a745;
       color: white;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 20px;
     }
 
     button:hover {
-      background-color: #e58900;
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
 
-<h1>Download Minecraft</h1>
-<p>Click the button below to download the setup wizard for your system:</p>
+  <h1>Download Minecraft</h1>
+  <p>Click below to download the installer for your system:</p>
 
-<button onclick="downloadMinecraft()">Download Minecraft</button>
+  <button onclick="downloadMinecraft()">Download Minecraft</button>
 
-<script>
-  function downloadMinecraft() {
-    const userAgent = navigator.userAgent.toLowerCase();
+  <script>
+    function downloadMinecraft() {
+      const platform = navigator.platform.toLowerCase();
 
-    if (userAgent.includes("win")) {
-      // Direct download for Windows installer (replace this with your hosted .exe if needed)
-      window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.exe";
-    } else if (userAgent.includes("mac")) {
-      // Direct download for Mac installer (replace this with your hosted .dmg if needed)
-      window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
-    } else {
-      alert("Sorry, this download is only for Windows and Mac.");
+      if (platform.includes("win")) {
+        // ✅ Official Windows Installer
+        window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.exe";
+      } else if (platform.includes("mac") || platform.includes("macintel")) {
+        // ✅ Official Mac Installer
+        window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
+      } else {
+        alert("This download is only for Windows and Mac.");
+      }
     }
-  }
-</script>
+  </script>
 
 </body>
 </html>
