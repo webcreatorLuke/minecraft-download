@@ -39,36 +39,51 @@
 </head>
 <body>
 
-<button id="openDownloadWizard">Click to Download Minecraft</button>
-
 <div id="overlay"></div>
 <div id="downloadWizard">
   <h2>Download Minecraft</h2>
-  <p>Click the button below to download Minecraft for your device:</p>
+  <p>Select your operating system:</p>
   <button id="downloadBtn" onclick="downloadMinecraft()">Download Minecraft</button><br><br>
   <button onclick="closeWizard()">Close</button>
 </div>
 
 <script>
-  document.getElementById("openDownloadWizard").addEventListener("click", function() {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("downloadWizard").style.display = "block";
+  let typed = "";
+  const target = "minecraft";
+
+  document.addEventListener("keydown", function(event) {
+    typed += event.key.toLowerCase();
+    if (typed.length > target.length) {
+      typed = typed.slice(-target.length);
+    }
+
+    if (typed === target) {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("downloadWizard").style.display = "block";
+    }
   });
 
   function downloadMinecraft() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // Detect the user's platform (Windows or macOS)
+    const isWindows = navigator.platform.indexOf('Win') > -1;
+    const isMac = navigator.platform.indexOf('Mac') > -1;
 
-    if (/windows phone/i.test(userAgent)) {
-      alert("Minecraft is not available on Windows Phone.");
-    } else if (/android/i.test(userAgent)) {
-      window.location.href = "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe";
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      window.location.href = "https://apps.apple.com/app/minecraft/id479516143";
-    } else if (/Mac/i.test(userAgent)) {
-      window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
-    } else if (/Win/i.test(userAgent)) {
+    if (isWindows) {
+      // Download Windows version
       window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.msi";
+    } else if (isMac) {
+      // Download macOS version
+      window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
     } else {
-      alert("Sorry, your device is not supported.");
+      alert("Sorry, we could not detect your operating system.");
     }
   }
+
+  function closeWizard() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("downloadWizard").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
