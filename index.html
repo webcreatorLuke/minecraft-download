@@ -6,52 +6,50 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
+      background-color: #f2f2f2;
       text-align: center;
       padding-top: 100px;
     }
 
     h1 {
       font-size: 32px;
-      margin-bottom: 20px;
     }
 
-    button {
-      padding: 15px 30px;
+    #downloadBtn {
       font-size: 20px;
-      background-color: #28a745;
+      padding: 15px 30px;
+      background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 10px;
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #218838;
+    #downloadBtn:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
 
   <h1>Download Minecraft</h1>
-  <p>Click the button below to start the setup wizard:</p>
-
-  <button onclick="askAndDownload()">Download Minecraft</button>
+  <p>Click the button and choose your computer type to begin:</p>
+  <button id="downloadBtn">Download Minecraft</button>
 
   <script>
-    function askAndDownload() {
-      const answer = prompt("What computer are you using? Type 'mac' or 'windows'").toLowerCase();
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+      const os = prompt("Which computer are you using? Type 'Mac' or 'Windows'").toLowerCase();
 
-      if (answer === "windows") {
+      if (os === "windows") {
         alert("Starting Minecraft Setup Wizard for Windows...");
         window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.exe";
-      } else if (answer === "mac") {
+      } else if (os === "mac") {
         alert("Starting Minecraft Setup Wizard for Mac...");
         window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
       } else {
-        alert("Invalid input. Please type 'mac' or 'windows'.");
+        alert("Invalid input. Please type exactly 'Mac' or 'Windows'.");
       }
-    }
+    });
   </script>
 
 </body>
