@@ -100,100 +100,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Geometry Dash Downloader</title>
+  <title>Geometry Dash Download</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f0f0;
+      background: #f2f2f2;
       text-align: center;
       padding-top: 100px;
     }
 
-    #downloadPopup {
-      display: none;
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border: 2px solid black;
-      padding: 30px;
-      z-index: 1000;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      width: 300px;
-      border-radius: 10px;
-    }
-
-    #overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 999;
-    }
-
-    button {
-      font-size: 16px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    #showDownload {
-      background-color: #2196F3;
-      color: white;
-    }
-
     #downloadBtn {
+      font-size: 20px;
+      padding: 15px 30px;
       background-color: #4CAF50;
       color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
     }
 
-    #closeBtn {
-      background-color: #f44336;
-      color: white;
+    #downloadBtn:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
 
-<button id="showDownload">Download Geometry Dash</button>
+<h1>Download Geometry Dash</h1>
+<p>Click the button below to get Geometry Dash for your device:</p>
 
-<div id="overlay"></div>
-<div id="downloadPopup">
-  <h2>Ready to Play?</h2>
-  <p>Click below to download Geometry Dash for your device.</p>
-  <button id="downloadBtn">Download Geometry Dash</button><br>
-  <button id="closeBtn">Cancel</button>
-</div>
+<!-- 👇 THIS is the button you're looking for -->
+<button id="downloadBtn">Download Geometry Dash</button>
 
 <script>
-  const showDownload = document.getElementById('showDownload');
-  const overlay = document.getElementById('overlay');
-  const popup = document.getElementById('downloadPopup');
-  const downloadBtn = document.getElementById('downloadBtn');
-  const closeBtn = document.getElementById('closeBtn');
+  const btn = document.getElementById("downloadBtn");
 
-  showDownload.addEventListener('click', () => {
-    overlay.style.display = 'block';
-    popup.style.display = 'block';
-  });
-
-  closeBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    popup.style.display = 'none';
-  });
-
-  downloadBtn.addEventListener('click', () => {
+  btn.addEventListener("click", () => {
     const ua = navigator.userAgent.toLowerCase();
 
     if (/android/.test(ua)) {
       window.location.href = "https://play.google.com/store/apps/details?id=com.robtopx.geometryjump";
     } else if (/iphone|ipad|ipod/.test(ua)) {
       window.location.href = "https://apps.apple.com/app/geometry-dash/id625334537";
-    } else if (/win/.test(ua) || /mac/.test(ua)) {
+    } else if (/win|mac/.test(ua)) {
       window.location.href = "https://store.steampowered.com/app/322170/Geometry_Dash/";
     } else {
       alert("Sorry, your device might not be supported.");
