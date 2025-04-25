@@ -34,22 +34,22 @@
 <body>
 
   <h1>Download Minecraft</h1>
-  <p>Click below to download the installer for your system:</p>
+  <p>Click the button below to start the setup wizard:</p>
 
-  <button onclick="downloadMinecraft()">Download Minecraft</button>
+  <button onclick="askAndDownload()">Download Minecraft</button>
 
   <script>
-    function downloadMinecraft() {
-      const platform = navigator.platform.toLowerCase();
+    function askAndDownload() {
+      const answer = prompt("What computer are you using? Type 'mac' or 'windows'").toLowerCase();
 
-      if (platform.includes("win")) {
-        // ✅ Official Windows Installer
+      if (answer === "windows") {
+        alert("Starting Minecraft Setup Wizard for Windows...");
         window.location.href = "https://launcher.mojang.com/download/MinecraftInstaller.exe";
-      } else if (platform.includes("mac") || platform.includes("macintel")) {
-        // ✅ Official Mac Installer
+      } else if (answer === "mac") {
+        alert("Starting Minecraft Setup Wizard for Mac...");
         window.location.href = "https://launcher.mojang.com/download/Minecraft.dmg";
       } else {
-        alert("This download is only for Windows and Mac.");
+        alert("Invalid input. Please type 'mac' or 'windows'.");
       }
     }
   </script>
