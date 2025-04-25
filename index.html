@@ -108,73 +108,97 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: white;
-      border: 2px solid black;
+      background: #fff;
+      border: 2px solid #000;
       padding: 20px;
       z-index: 1000;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
+
     #overlay {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.5);
       z-index: 999;
     }
-    #downloadBtn {
-      padding: 10px 20px;
+
+    #openDownloadWizard {
+      margin: 100px auto;
+      display: block;
+      padding: 15px 30px;
+      font-size: 18px;
       background-color: #2196F3;
       color: white;
       border: none;
       cursor: pointer;
-      font-size: 16px;
+      border-radius: 10px;
     }
-    #downloadBtn:hover {
-      background-color: #0b7dda;
+
+    #downloadBtn {
+      padding: 10px 25px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    #closeBtn {
+      margin-top: 10px;
+      padding: 5px 15px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
 
-<button id="openDownloadWizard">Click to Download Geometry Dash</button>
+<button id="openDownloadWizard">Download Geometry Dash</button>
 
 <div id="overlay"></div>
 <div id="downloadWizard">
   <h2>Download Geometry Dash</h2>
-  <p>Click the button below to download Geometry Dash for your device:</p>
-  <button id="downloadBtn" onclick="downloadGeometryDash()">Download Geometry Dash</button><br><br>
-  <button onclick="closeWizard()">Close</button>
+  <p>We’ll detect your device and send you to the correct store.</p>
+  <button id="downloadBtn">Download Now</button><br><br>
+  <button id="closeBtn">Cancel</button>
 </div>
 
 <script>
-  document.getElementById("openDownloadWizard").addEventListener("click", function() {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("downloadWizard").style.display = "block";
+  const openBtn = document.getElementById('openDownloadWizard');
+  const overlay = document.getElementById('overlay');
+  const wizard = document.getElementById('downloadWizard');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const closeBtn = document.getElementById('closeBtn');
+
+  openBtn.addEventListener('click', () => {
+    overlay.style.display = 'block';
+    wizard.style.display = 'block';
   });
 
-  function downloadGeometryDash() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  closeBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    wizard.style.display = 'none';
+  });
 
-    if (/windows phone/i.test(userAgent)) {
-      alert("Geometry Dash is not available on Windows Phone.");
-    } else if (/android/i.test(userAgent)) {
+  downloadBtn.addEventListener('click', () => {
+    const ua = navigator.userAgent.toLowerCase();
+
+    if (/android/.test(ua)) {
       window.location.href = "https://play.google.com/store/apps/details?id=com.robtopx.geometryjump";
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    } else if (/iphone|ipad|ipod/.test(ua)) {
       window.location.href = "https://apps.apple.com/app/geometry-dash/id625334537";
-    } else if (/Mac/i.test(userAgent)) {
-      window.location.href = "https://store.steampowered.com/app/322170/Geometry_Dash/";
-    } else if (/Win/i.test(userAgent)) {
+    } else if (/win/.test(ua) || /mac/.test(ua)) {
       window.location.href = "https://store.steampowered.com/app/322170/Geometry_Dash/";
     } else {
-      alert("Sorry, your device is not supported.");
+      alert("Sorry, your device might not be supported.");
     }
-  }
-
-  function closeWizard() {
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("downloadWizard").style.display = "none";
-  }
+  });
 </script>
 
 </body>
