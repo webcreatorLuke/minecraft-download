@@ -81,3 +81,101 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Geometry Dash Downloader</title>
+  <style>
+    #downloadWizard {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid black;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    #downloadBtn {
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #downloadBtn:hover {
+      background-color: #0b7dda;
+    }
+  </style>
+</head>
+<body>
+
+<button id="openDownloadWizard">Click to Download Geometry Dash</button>
+
+<div id="overlay"></div>
+<div id="downloadWizard">
+  <h2>Download Geometry Dash</h2>
+  <p>Click the button below to download Geometry Dash for your device:</p>
+  <button id="downloadBtn" onclick="downloadGeometryDash()">Download Geometry Dash</button><br><br>
+  <button onclick="closeWizard()">Close</button>
+</div>
+
+<script>
+  document.getElementById("openDownloadWizard").addEventListener("click", function() {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("downloadWizard").style.display = "block";
+  });
+
+  function downloadGeometryDash() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/windows phone/i.test(userAgent)) {
+      alert("Geometry Dash is not available on Windows Phone.");
+    } else if (/android/i.test(userAgent)) {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.robtopx.geometryjump";
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.location.href = "https://apps.apple.com/app/geometry-dash/id625334537";
+    } else if (/Mac/i.test(userAgent)) {
+      window.location.href = "https://store.steampowered.com/app/322170/Geometry_Dash/";
+    } else if (/Win/i.test(userAgent)) {
+      window.location.href = "https://store.steampowered.com/app/322170/Geometry_Dash/";
+    } else {
+      alert("Sorry, your device is not supported.");
+    }
+  }
+
+  function closeWizard() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("downloadWizard").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
