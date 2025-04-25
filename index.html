@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Download Minecraft</title>
+  <meta charset="UTF-8">
+  <title>Minecraft Download</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f8f8f8;
+      background: #f2f2f2;
       text-align: center;
       padding-top: 100px;
     }
 
     #downloadBtn {
-      padding: 15px 30px;
       font-size: 20px;
-      background-color: #FF9800;
+      padding: 15px 30px;
+      background-color: #2e8b57;
       color: white;
       border: none;
       border-radius: 10px;
@@ -21,20 +22,32 @@
     }
 
     #downloadBtn:hover {
-      background-color: #e68900;
+      background-color: #276c47;
     }
   </style>
 </head>
 <body>
 
 <h1>Download Minecraft</h1>
-<p>Click the button below to download for Mac or Windows:</p>
+<p>Click the button below to download Minecraft for your device:</p>
 
 <button id="downloadBtn">Download Minecraft</button>
 
 <script>
-  document.getElementById("downloadBtn").addEventListener("click", function() {
-    window.location.href = "https://www.minecraft.net/en-us/download";
+  const btn = document.getElementById("downloadBtn");
+
+  btn.addEventListener("click", () => {
+    const ua = navigator.userAgent.toLowerCase();
+
+    if (/android/.test(ua)) {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe";
+    } else if (/iphone|ipad|ipod/.test(ua)) {
+      window.location.href = "https://apps.apple.com/us/app/minecraft/id479516143";
+    } else if (/win|mac/.test(ua)) {
+      window.location.href = "https://www.minecraft.net/en-us/download";
+    } else {
+      alert("Sorry, your device might not be supported.");
+    }
   });
 </script>
 
