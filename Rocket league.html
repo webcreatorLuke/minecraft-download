@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download Rocket League</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    #downloadBtn {
+      font-size: 22px;
+      padding: 15px 40px;
+      background-color: #0078D7;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #downloadBtn:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Download Rocket League</h1>
+  <p>Click the button below to start downloading Rocket League:</p>
+  <button id="downloadBtn">Download Rocket League</button>
+
+  <script>
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+      alert("Redirecting you to Rocket League download...");
+      window.location.href = "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi";
+    });
+  </script>
+
+</body>
+</html>
