@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Download robloxt</title>
+  <title>Download Roblox</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,7 +32,7 @@
 </head>
 <body>
 
-  <h1>Download Minecraft</h1>
+  <h1>Download Roblox</h1>
   <p>Click the button and choose your computer type to begin:</p>
   <button id="downloadBtn">Download Roblox</button>
 
@@ -41,11 +41,11 @@
       const os = prompt("Which computer are you using? Type 'Mac' or 'Windows'").toLowerCase();
 
       if (os === "windows") {
-        alert("Starting Minecraft Setup Wizard for Windows...");
-        window.location.href = "https://www.roblox.com/download/RobloxPlayerinstaller.exe";
+        alert("Starting Roblox Setup Wizard for Windows...");
+        window.location.href = "https://setup.rbxcdn.com/RobloxPlayerLauncher.exe";
       } else if (os === "mac") {
-        alert("Starting Minecraft Setup Wizard for Mac...");
-        window.location.href = "https://www.roblox.com/download/Robloxplayerinstaller.dmg";
+        alert("Starting Roblox Setup Wizard for Mac...");
+        window.location.href = "https://setup.rbxcdn.com/mac/Roblox.dmg";
       } else {
         alert("Invalid input. Please type exactly 'Mac' or 'Windows'.");
       }
